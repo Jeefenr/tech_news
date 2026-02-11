@@ -7,3 +7,20 @@ services:
       - "5000:5000"
     volumes:
       - ./app:/app/app
+    depends_on:
+      - db  
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/technews_db
+
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: technews_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  
+
+volumes:
+  postgres_data:
