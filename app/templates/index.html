@@ -1,41 +1,17 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechNews Aggregator</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="/">📡 TechNews</a>
-            <div class="navbar-nav">
-                <a class="nav-link" href="/">Головна</a>
-                <a class="nav-link" href="/about">Про проєкт</a>
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-center mb-4">Останні новини технологій</h1>
+<div class="row">
+    {% for item in news %}
+    <div class="col-md-6 mb-4">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ item.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ item.source }} | {{ item.published }}</h6>
+                <a href="{{ item.link }}" target="_blank" class="btn btn-outline-dark btn-sm">Читати далі &rarr;</a>
             </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1 class="mb-4 text-center">Останні новини технологій</h1>
-        
-        <div class="row">
-            {% for item in news %}
-            <div class="col-md-6 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title text-primary">{{ item.title }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ item.source }} | {{ item.published }}</h6>
-                        <p class="card-text">Короткий опис новини буде тут...</p>
-                        <a href="#" class="btn btn-outline-dark btn-sm">Читати далі &rarr;</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
         </div>
     </div>
-
-</body>
-</html>
+    {% endfor %}
+</div>
+{% endblock %}

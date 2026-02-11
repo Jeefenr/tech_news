@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2>👋 Привіт, {{ username }} (Admin)</h2>
+    <a href="/logout" class="btn btn-secondary mb-4">Вийти</a>
+
+    <div class="card mb-4">
+        <div class="card-header">Додати новину вручну</div>
+        <div class="card-body">
+            <form method="POST">
+                <input type="text" name="title" class="form-control mb-2" placeholder="Заголовок" required>
+                <input type="text" name="link" class="form-control mb-2" placeholder="Посилання" required>
+                <button type="submit" class="btn btn-primary">Додати</button>
+            </form>
+        </div>
+    </div>
+
+    <h3>Управління новинами</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Заголовок</th>
+                <th>Джерело</th>
+                <th>Дія</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in news %}
+            <tr>
+                <td>{{ item[0] }}</td>
+                <td>{{ item[1] }}</td>
+                <td>{{ item[2] }}</td>
+                <td>
+                    <a href="/delete/{{ item[0] }}" class="btn btn-danger btn-sm" onclick="return confirm('Видалити?')">X</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

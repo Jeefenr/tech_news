@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>TechNews System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">📡 TechNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/">Новини</a>
+                <a class="nav-link" href="/about">Про нас</a>
+                {% if session.get('user_id') %}
+                    <a class="nav-link text-warning" href="/admin">Адмінка</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Вхід</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
